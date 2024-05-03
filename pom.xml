@@ -84,7 +84,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>TagNTracApplication</finalName>
+		<finalName>tagNtrac-application</finalName>
 	</build>
 
 </project>
