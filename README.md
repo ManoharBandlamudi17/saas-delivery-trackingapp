@@ -63,7 +63,8 @@ Request body
     "userName" : "test",
     "password" : "test"
 }
-Response : Succesful response will get the JWT token
+Response : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
 This JWT token is being added in the header of the requests with Authorization as Bearer Token
 3. To Add the customer
    POST Request
@@ -73,31 +74,87 @@ This JWT token is being added in the header of the requests with Authorization a
     "name": "Jood",
     "password": "test"
   }
-4. For the customer to add the shipment details
+  Response
+
+  {
+    "id": "1",
+    "name": "Jood",
+    "password": "test"
+  }
+5. For the customer to add the shipment details
    POST Request
    localhost:8081/api/customer/addShipmentDetails/
    Request body
    {
     "shipmentName": "Shoes",
-    "toAddressDTO": "test",
+    "doorNo": "12-1",
+    "street": "avunue street",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "zip": "500001",
+    "contactNumber": "5555585585",
     "shipmentStatus": ""   
   }
-5. To add the delivery partner
+  Response
+      {
+    "shipmentId": "1",
+    "shipmentName": "Shoes",
+    "shipmentStatus": "SHIPMENT_COLLECTED",
+    "addressId": "1",
+    "doorNo": "12-1",
+    "street": "avunue street",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "zip": "500001",
+    "contactNumber": "5555585585"
+  }
+6. To add the delivery partner
    POST Request
      localhost:8081/api/customer/addDeliveryPartner/
    Request body
    {
     "deliveryPartnerName": "XYZ packers and movers",
-    "toAddressDTO": "1222321112" 
+    "deliveryPartnerContactNumber": "1222321112"
   }
-6. To assign the delivery partner
+7. To assign the delivery partner
    PUT Request
    localhost:8081/api/customer/assignDeliveryPartner/{ShipmentDetailsId}/{deliveryPartnerId}
+   
 7.For the delivery partner to see the shipments assigned to him
-GET Reqest
- localhost:8081/api/customer/getShipments/{deliveryPartnerId}
-8. For the delivery partner to update the status of the shipment
-PUT Request
-localhost:8081/api/customer/updateDeiveryStatus/{shipmentDetailsId}/{status}
+  GET Reqest
+  localhost:8081/api/customer/getShipments/{deliveryPartnerId}
+  Response
+  {
+   [ "shipmentId": "1",
+    "shipmentName": "Shoes",
+    "shipmentStatus": "SHIPMENT_COLLECTED",
+    "addressId": "1",
+    "doorNo": "12-1",
+    "street": "avunue street",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "zip": "500001",
+    "contactNumber": "5555585585"]
+  }
+8.For the delivery partner to update the status of the shipment
+  PUT Request
+  localhost:8081/api/customer/updateDeiveryStatus/{shipmentDetailsId}/{status}
+  Response 
+  {
+    "shipmentId": "1",
+    "shipmentName": "Shoes",
+    "shipmentStatus": "SHIPMENT_COLLECTED",
+    "addressId": "1",
+    "doorNo": "12-1",
+    "street": "avunue street",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "zip": "500001",
+    "contactNumber": "5555585585"
+  }
 
 The Docker file is provided to create the docker image.
