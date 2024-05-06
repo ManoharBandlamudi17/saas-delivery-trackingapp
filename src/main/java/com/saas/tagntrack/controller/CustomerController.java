@@ -5,6 +5,7 @@ import com.saas.tagntrack.dto.ShipmentDetailsDTO;
 import com.saas.tagntrack.service.CustomerService;
 import com.saas.tagntrack.service.ShipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -26,7 +27,7 @@ public class CustomerController {
     @Path("/addCustomer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addCustomer(CustomerDTO customerDTO){
+    public Response addCustomer(@RequestBody CustomerDTO customerDTO){
         customerDTO = customerService.addCustomer(customerDTO);
         return Response.status(Response.Status.CREATED)
                 .entity(customerDTO)
@@ -37,7 +38,7 @@ public class CustomerController {
     @Path("/addShipmentDetails")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addShipmentDetails(ShipmentDetailsDTO shipmentDetailsDTO) {
+    public Response addShipmentDetails(@RequestBody ShipmentDetailsDTO shipmentDetailsDTO) {
         shipmentDetailsDTO = shipmentService.addNewShipmentDetails(shipmentDetailsDTO);
         return Response.ok(shipmentDetailsDTO).build();
     }

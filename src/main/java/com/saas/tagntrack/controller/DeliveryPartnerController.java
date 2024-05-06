@@ -4,6 +4,7 @@ import com.saas.tagntrack.dto.DeliveryPartnerDTO;
 import com.saas.tagntrack.dto.ShipmentDetailsDTO;
 import com.saas.tagntrack.service.DeliveryPartnerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -47,7 +48,7 @@ public class DeliveryPartnerController {
     @POST
     @Path("/addDeliveryPartner")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addDeliveryPartner(DeliveryPartnerDTO deliveryPartnerDTO) throws Exception {
+    public Response addDeliveryPartner(@RequestBody DeliveryPartnerDTO deliveryPartnerDTO) throws Exception {
         deliveryPartnerDTO = deliveryPartnerService.addDeliveryPartner(deliveryPartnerDTO);
         return Response.ok(deliveryPartnerDTO).build();
     }

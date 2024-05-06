@@ -28,8 +28,8 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Size(min = 5, max = 20)
+    @Size(min = 3, max = 20)
     private String name;
-    @Size(min = 6, max = 20)
+    @Size(min = 3, max = 20)
     private String password;
 }

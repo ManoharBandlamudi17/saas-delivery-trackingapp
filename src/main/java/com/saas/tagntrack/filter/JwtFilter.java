@@ -32,7 +32,10 @@ public class JwtFilter extends OncePerRequestFilter {
         String userName = null;
 
         if(null != authorization && authorization.startsWith("Bearer ")) {
-            token = authorization.substring(7);
+            String[] tokenArr = authorization.split(" ");
+            if(tokenArr.length >= 2) {
+                token = tokenArr[2];
+            }
             userName = jwtUtility.getUsernameFromToken(token);
         }
 

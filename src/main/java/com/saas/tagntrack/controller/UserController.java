@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -30,7 +31,7 @@ public class UserController {
     @POST
     @Path("/authenticate")
     @Produces(MediaType.APPLICATION_JSON)
-    public JwtResponse authenticate(JwtRequest jwtRequest) throws Exception{
+    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
         try {
             authenticationManager.authenticate(
